@@ -10,16 +10,16 @@ enum Dir{UP, DOWN, LEFT, RIGHT};
 class Base
 {
 private:
-    QPoint pos;
-    QRect rectSphere;
+    QPoint pos;//左上角的点
+    QRect rectSphere;//长方形（左上角坐标，长，宽）
 
-    Dir dir;
+    Dir dir;//方向
 
-    bool disappear;
+    bool disappear;//判断是否消失
 
-    int life;
-    int step;
-    int attack;
+    int life;//生命值
+    int step;//移动
+    int attack;//伤害
 
 public:
 
@@ -41,8 +41,9 @@ public:
 
     bool isDisappear();
 
-    bool isBoom(const Base *base)const;
+    bool isBoom(const Base *base)const;//判断相撞
 
+    void setDir(Dir dir);
     void setDisappear(bool dis);
 
     QPoint getPos() const;

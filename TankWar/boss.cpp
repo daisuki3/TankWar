@@ -29,3 +29,8 @@ void Boss::beAttacked(int attack)
 
     return ;
 }
+
+void Boss::move()
+{
+//do nothing
+}

@@ -35,16 +35,13 @@ struct INFO
     //npc坦克
     QList<Tank*> enemytanks;
 
-    QList<Missile*> playerMissiles;
+    //QList<Missile*> playerMissiles;
 
     //地图块图片
     QImage cellImages[5];
 
-    //坦克图片上下左右的图片
-    QImage playerTankImage[4];
-    QImage enemyTank1Image[4];
-    QImage enemyTank2Image[4];
-    QImage enemyTank3Image[4];
+    //坦克上下左右的图片
+    QImage tankImages[16];
 
     QImage missilePic;
     QImage bossPic;

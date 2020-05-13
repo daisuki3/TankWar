@@ -6,6 +6,7 @@
 #include "boss.h"
 #include "tank.h"
 
+
 #include <QMainWindow>
 #include <QPainter>
 #include <QKeyEvent>
@@ -34,26 +35,26 @@ public:
 
     void initGame();
 
-    void loadCell();
+    //void loadCell();
 
-    void isAllDisappeared() const;
+    //void isAllDisappeared() const;
 
-    void missileMeet();
+   // void missileMeet();
 
-    void isOver();
+    //void isOver();
 
     GameStatus getGameStatus() const;
 
-    void showPlayerInfo();
+    //void showPlayerInfo();
 
 private slots:
+  void timeFun();
+
   void paintEvent(QPaintEvent* event);
 
   void keyPressEvent(QKeyEvent* event);
 
   void keyReleaseEvent(QKeyEvent* event);
-
-  void timeFun();
 
   void showLunchInfo();
 
@@ -69,9 +70,7 @@ private:
     Ui::MainWindow *ui;
 
     void setGameStatus(GameStatus status);
-    GameStatus m_status;
-
-    Map m_map;
+    GameStatus status;
 
     QTimer* timer;
     QPainter paint;

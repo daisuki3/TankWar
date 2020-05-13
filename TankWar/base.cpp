@@ -25,6 +25,11 @@ bool Base::isBoom(const Base *base) const
     return true;
 }
 
+void Base::setDir(Dir dir)
+{
+    this->dir = dir;
+}
+
 void Base::setDisappear(bool dis)
 {
     this->disappear = dis;

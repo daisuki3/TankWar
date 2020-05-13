@@ -297,6 +297,7 @@ Makefile: ..\TankWar\TankWar.pro ..\..\Qt\5.14.2\msvc2017\mkspecs\win32-msvc\qma
 		..\..\Qt\5.14.2\msvc2017\lib\Qt5Core.prl \
 		..\..\Qt\5.14.2\msvc2017\lib\qtmain.prl \
 		..\..\Qt\5.14.2\msvc2017\mkspecs\features\build_pass.prf \
+		..\TankWar\pixs\src.qrc \
 		..\..\Qt\5.14.2\msvc2017\lib\Qt5Widgetsd.prl \
 		..\..\Qt\5.14.2\msvc2017\lib\Qt5Guid.prl \
 		..\..\Qt\5.14.2\msvc2017\lib\Qt5Cored.prl \
@@ -515,6 +516,7 @@ Makefile: ..\TankWar\TankWar.pro ..\..\Qt\5.14.2\msvc2017\mkspecs\win32-msvc\qma
 ..\..\Qt\5.14.2\msvc2017\lib\Qt5Core.prl:
 ..\..\Qt\5.14.2\msvc2017\lib\qtmain.prl:
 ..\..\Qt\5.14.2\msvc2017\mkspecs\features\build_pass.prf:
+..\TankWar\pixs\src.qrc:
 ..\..\Qt\5.14.2\msvc2017\lib\Qt5Widgetsd.prl:
 ..\..\Qt\5.14.2\msvc2017\lib\Qt5Guid.prl:
 ..\..\Qt\5.14.2\msvc2017\lib\Qt5Cored.prl:

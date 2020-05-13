@@ -1,0 +1,28 @@
+<RCC>
+    <qresource prefix="/new/prefix1">
+        <file>1_1.png</file>
+        <file>2_1.png</file>
+        <file>3.png</file>
+        <file>4.png</file>
+        <file>5.png</file>
+        <file>boss.png</file>
+        <file>enemy1D.png</file>
+        <file>enemy1L.png</file>
+        <file>enemy1R.png</file>
+        <file>enemy1U.png</file>
+        <file>enemy2D.png</file>
+        <file>enemy2L.png</file>
+        <file>enemy2R.png</file>
+        <file>enemy2U.png</file>
+        <file>enemy3D.png</file>
+        <file>enemy3L.png</file>
+        <file>enemy3R.png</file>
+        <file>enemy3U.png</file>
+        <file>p1tankD.png</file>
+        <file>p1tankL.png</file>
+        <file>p1tankR.png</file>
+        <file>p1tankU.png</file>
+        <file>start.png</file>
+        <file>tankMissile.png</file>
+    </qresource>
+</RCC>
