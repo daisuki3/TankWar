@@ -37,8 +37,9 @@
 
 原因：movejudge函数中，方向计算逻辑有误
 ![movejudge_wrong](https://github.com/daisuki3/TankWar/blob/master/de/movejudge_wrong.png)
-8. unknown signal
 
+8. unknown signal
+![signal_error](https://github.com/daisuki3/TankWar/blob/master/de/signal_error.png)
 
 原因：初步猜测数组越界 检查后发现是missile类的构造函数中变量未正确初始化
 
