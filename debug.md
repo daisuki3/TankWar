@@ -1,5 +1,5 @@
 1. 没有在 main.cpp 初始化全局机构体 struct info 导致报错
-![link](https://github.com/daisuki3/TankWar/blob/master/de/array.png)
+![link](https://github.com/daisuki3/TankWar/blob/master/de/link.png)
 
 2. painter 画不出效果 
 ![paint](https://github.com/daisuki3/TankWar/blob/master/de/paint.png)
