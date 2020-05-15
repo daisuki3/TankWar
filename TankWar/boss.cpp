@@ -3,19 +3,20 @@
 Boss::Boss()
 {
 
-    setDisappear(false);
-
+    this->setDisappear(false);
+/*
     this->pos.setX(6 * CELLWIDTH);
     this->pos.setY(12 * CELLHEIGHT);
-    this->life = 1;
-
+*/
     this->calSphere();
 }
 
 void Boss::display(QPainter &paint)
 {
+    /*
     if(isDisappear() == false)
         paint.drawImage(rectSphere, info.bossPic);
+     */
 }
 
 void Boss::calSphere()
@@ -26,7 +27,8 @@ void Boss::calSphere()
 
 void Boss::beAttacked(int attack)
 {
-    setDisappear(true);
+    qDebug("boss boom");
+    this->setDisappear(true);
 
     return;
 }

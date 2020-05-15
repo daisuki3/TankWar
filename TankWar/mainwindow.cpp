@@ -140,6 +140,7 @@ void MainWindow::loadCell()
 
 void MainWindow::showPlayerInfo()
 {
+
     score1->setText(tr("score:"));
     QRect r1(790,90,80,20);
     score1->setGeometry(r1);
@@ -179,7 +180,6 @@ void MainWindow::showTips()
     setGeometry(880, 350, 200, 150);
     QMessageBox::information(this,tr("操作说明"),
                                  tr("WASD控制方向"
-                                  "\n"
                                   "\n\n  J 射击"
                                   "\n\n  P 暂停"
                                   "\n\n  G 恢复"));
@@ -391,6 +391,7 @@ void MainWindow::timeFun()
 
    // missileMeet();
 
+    /*
     if(isEnemyAllDisappeared())
     {
         status = pause;
@@ -400,6 +401,7 @@ void MainWindow::timeFun()
 
         this->close();
     }
+*/
 
     this->isOver();
     qDebug("time out");

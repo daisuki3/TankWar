@@ -1,4 +1,6 @@
 #include "cell.h"
+#include "main.h"
+#include "mainwindow.h"
 
 #include <QImage>
 
@@ -75,6 +77,11 @@ void Cell::calSphere()
 
 void Cell::beAttacked(int attack)
 {
+    if(this->kind == BOSS)
+    {
+        info.boss->beAttacked(attack);
+    }
+
     if(life > 0)
         life -= attack;
 

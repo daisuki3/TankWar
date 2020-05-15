@@ -29,7 +29,8 @@
 6. 攻击BOSS BOSS不死亡
 ![fire_boss](https://github.com/daisuki3/TankWar/blob/master/de/fire_boss.png)
 
-原因：正在找
+原因：地图元素中的BOSS元素和全局结构体info中的BOSS对象是分离的，无法正确执行BOSS的死亡逻辑
+解决办法是在地图元素类中加入BOSS元素的死亡判断 
 
 7. 玩家坦克卡住
 ![tank_stuck](https://github.com/daisuki3/TankWar/blob/master/de/tank_stuck.png)

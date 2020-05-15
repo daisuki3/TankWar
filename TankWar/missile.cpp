@@ -12,6 +12,7 @@ Missile::Missile(const Tank& tank)
     kind = tank.kind;
     group = tank.group;
     setDisappear(false);
+
 }
 
 void Missile::display(QPainter &paint)
@@ -77,7 +78,7 @@ void Missile::move()
             || this->rectSphere.bottom() > MAPHEIGHT
             || this->rectSphere.top() < 0)
     {
-
+        qDebug("missile out");
         setDisappear(true);
     }
 
