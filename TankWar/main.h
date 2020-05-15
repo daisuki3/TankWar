@@ -57,7 +57,7 @@ struct INFO
     //已击毁敌方坦克总数
     int enemyTankDestroyed;
 
-    int playerTanksNum;
+    //int playerTanksNum;
 };
 
 extern INFO info;

@@ -35,7 +35,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     gamepause = new QLabel(this);
 
-    info.playerTanksNum = 1;
+    //info.playerTanksNum = 1;
     initGame();
 }
 
@@ -66,10 +66,10 @@ void MainWindow::initGame()
     Tank* tmp = new Tank(0,0,DOWN,1);
     info.enemytanks.append(tmp);
 
-    tmp = new Tank(0,0,DOWN,2);
+    tmp = new Tank(0,6,DOWN,2);
     info.enemytanks.append(tmp);
 
-    tmp = new Tank(0,0,DOWN,3);
+    tmp = new Tank(0,12,DOWN,3);
     info.enemytanks.append(tmp);
 
 
@@ -305,12 +305,11 @@ void MainWindow::keyReleaseEvent(QKeyEvent *event)
 
 void MainWindow::timeFun()
 {
-    if(status!=gaming)
+    if(status != gaming)
         return;
 
     Dir tmpDir;
     int tmp;
-
 
 
     //获取当前时间
@@ -319,10 +318,10 @@ void MainWindow::timeFun()
     qsrand(time.msec()+time.second()*100000);
 
     //敌人坦克控制
-    for(int i=0;i<info.enemytanks.count();++i)
+    for(int i = 0; i < info.enemytanks.count(); ++i)
     {
 
-        if(qrand()%5==0)
+        if(qrand()%5 == 0)
         {
             info.enemytanks.at(i)->startMove();
             info.enemytanks.at(i)->startFire();
@@ -390,7 +389,7 @@ void MainWindow::timeFun()
         info.enemytanks.at(i)->fire();
     }
 
-    missileMeet();
+   // missileMeet();
 
     if(isEnemyAllDisappeared())
     {
@@ -411,7 +410,7 @@ void MainWindow::timeFun()
 
 bool MainWindow::isEnemyAllDisappeared() const
 {
-    for(int i = 0; info.enemytanks.count(); ++i)
+    for(int i = 0; i < info.enemytanks.count(); ++i)
     {
         if(info.enemytanks.at(i)->isDisappear() == false)
             return false;
@@ -425,11 +424,11 @@ void MainWindow::missileMeet()
 {
     int missileNum = info.player->missilesOfTank.count();
 
-      if(missileNum==1)
+      if(missileNum == 1)
       {
           for(int i = 0; i < info.enemytanks.count(); ++i)
                   {
-                      if(info.enemytanks.at(i)->getIsFire()
+                      if(info.enemytanks.at(i)->getIsFire() == true
                               && info.player->missilesOfTank.at(0)->isBoom(info.enemytanks.at(i)->missilesOfTank.at(0)))
                       {
                           //玩家导弹消失
@@ -443,7 +442,6 @@ void MainWindow::missileMeet()
                           info.enemytanks.at(i)->setMissileNum();
 
                           break;
-
                       }
 
                   }
@@ -454,7 +452,7 @@ void MainWindow::missileMeet()
 void MainWindow::isOver()
 {
     if(info.boss->isDisappear()
-            ||(info.player->isDisappear() && info.playerTanksNum == playerTanksNumTmp))
+            || info.player->isDisappear())
     {
         status=pause;
         timer->stop();
@@ -470,8 +468,9 @@ void MainWindow::isOver()
         }
 
         //删除玩家坦克
-
         info.player=NULL;
+
+
         for(int i=0;i<ROW;++i)
         {
             for(int j=0;j<COL;++j)

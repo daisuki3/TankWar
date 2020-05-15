@@ -13,6 +13,7 @@ Tank::Tank()
 
     calSphere();
 
+    group = 0;
     step = 12;
     kind = 0;
     dir = UP;
@@ -35,6 +36,7 @@ Tank::Tank(int row, int col, Dir dir,int kind)
 
     calSphere();
 
+    this->group = 1;
     this->dir = dir;
     this->kind = kind;
     this->missileNum = 0;
@@ -140,21 +142,21 @@ void Tank::move()
 
 void Tank::moveForJudge()
 {
-    if(isMove==true)
+    if(isMove == true)
     {
         switch(dir)
         {
         case UP:
-            pos.setY(pos.y() + step);
-            break;
-        case DOWN:
             pos.setY(pos.y() - step);
             break;
+        case DOWN:
+            pos.setY(pos.y() + step);
+            break;
         case LEFT:
-            pos.setX(pos.x() + step);
+            pos.setX(pos.x() - step);
             break;
         case RIGHT:
-            pos.setX(pos.x() - step);
+            pos.setX(pos.x() + step);
             break;
         }
         calSphere();
@@ -183,6 +185,7 @@ void Tank::fire()
     {
         Missile* fire_missile = new Missile(*this);
         missilesOfTank.append(fire_missile);
+
     }
 }
 
@@ -211,28 +214,73 @@ bool Tank::isToCollision()
     judgeTank.moveForJudge();
 
 
-    QPoint nowPos = judgeTank.getPos();
+    //是否与地图块碰撞
+    for(int i = 0; i < ROW; ++i)
+    {
+        for(int j = 0; j < COL; ++j)
+        {
+            if(info.map->getCell(i,j) != NULL
+                    && info.map->getCell(i,j)->is_penetration_of_tank() == false
+                    && judgeTank.isBoom(info.map->getCell(i,j)))
+            {
+                qDebug("tank hit cell");
+                return true;
+            }
+        }
+    }
 
+    //是否碰撞边界
+    if(judgeTank.rectSphere.left() < 0
+            || judgeTank.rectSphere.right() > MAPWIDTH
+            || judgeTank.rectSphere.bottom() > MAPHEIGHT
+            || judgeTank.rectSphere.top() < 0)
+    {
 
-    if(nowPos.x() < 0
-            ||nowPos.x() > MAPWIDTH
-            ||nowPos.y() < 0
-            ||nowPos.y() > MAPHEIGHT)
-        //碰撞地图边界
         return true;
+    }
 
-    if(info.map->getCell(nowPos.x() / CELLWIDTH, nowPos.y() / CELLHEIGHT)->is_penetration_of_tank() == false)
-       //碰撞到坦克无法穿越的地形
-        return true;
-    else
-        return false;
 
     //玩家碰撞到敌方坦克
+    if(this->group == 0)
+    {
+        for(int i = 0; i < info.enemytanks.count(); ++i)
+        {
+            if(info.enemytanks.at(i) != NULL
+                    && judgeTank.isBoom(info.enemytanks.at(i)))
+            {
+                return true;
+            }
+        }
+    }
 
-    //敌方坦克碰撞到玩家
 
-    //敌方坦克碰撞到敌方坦克
 
+
+    if(this->group == 1)
+    {
+
+        //敌方坦克碰撞到玩家
+
+        if(judgeTank.isBoom(info.player))
+        {
+            return true;
+        }
+
+        //敌方坦克碰撞到敌方坦克
+        for(int i=0;i<info.enemytanks.count();++i)
+        {
+            if(this->kind != info.enemytanks.at(i)->kind)
+            {
+                if(judgeTank.isBoom(info.enemytanks.at(i)))
+                {
+                    return true;
+                }
+            }
+        }
+    }
+
+
+    return false;
 }
 
 

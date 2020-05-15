@@ -55,9 +55,6 @@ public:
 
     bool isToCollision();
 
-    int getKind() const;
-    int getGroup() const;
-
 };
 
 #endif // TANK_H
