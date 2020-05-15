@@ -16,7 +16,7 @@
 ![array](https://github.com/daisuki3/TankWar/blob/master/de/array.png)
 
 出错地点
-![get_cell](https://github.com/daisuki3/TankWar/blob/master/de/de/get_cell.png)
+![get_cell](https://github.com/daisuki3/TankWar/blob/master/de/get_cell.png)
 
 6. 攻击BOSS BOSS不死亡
 ![fire_boss](https://github.com/daisuki3/TankWar/blob/master/de/fire_boss.png)
