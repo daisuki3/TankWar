@@ -33,17 +33,24 @@ void Cell::display(QPainter &paint)
 
     switch(this->kind)
     {
+    /*
+     * 0 老王
+     * 1 墙
+     * 2 铁墙
+     * 3 水
+     * 4 地
+     * */
     case 0:
-        paint.drawImage(rectSphere, info.cellImages[0]);
+        paint.drawImage(rectSphere, info.bossPic);
         break;
     case 1:
-        paint.drawImage(rectSphere, info.cellImages[1]);
+        paint.drawImage(rectSphere, info.cellImages[0]);//墙
         break;
     case 2:
-        paint.drawImage(rectSphere, info.cellImages[2]);
+        paint.drawImage(rectSphere, info.cellImages[1]);//铁墙
         break;
     case 3:
-        paint.drawImage(rectSphere, info.cellImages[3]);
+        paint.drawImage(rectSphere, info.cellImages[2]);//水
         break;
     case 4:
         break;
@@ -81,10 +88,12 @@ void Cell::beAttacked(int attack)
 
 bool Cell::is_penetration_of_tank()
 {
-    return penetrations_of_tank[kind];
+
+    return penetrations_of_tank[this->kind];
 }
 
 bool Cell::is_penetration_of_missile()
 {
-    return penetrations_of_missile[kind];
+
+    return penetrations_of_missile[this->kind];
 }

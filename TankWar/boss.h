@@ -9,12 +9,10 @@ class Boss: public Base
 public:
     Boss();
 
-    virtual void display(QPainter& paint) override;
-    virtual void move() override;
-    virtual void beAttacked(int attack) override;
-
-protected:
-    virtual void calSphere() override;
+    void display(QPainter& paint) override;
+    void move() override;
+    void beAttacked(int attack) override;
+    void calSphere() override;
 };
 
 #endif // BOSS_H

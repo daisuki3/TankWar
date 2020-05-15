@@ -31,6 +31,8 @@ public:
     friend class Missile;
     friend class Tank;
 
+    friend class MainWindow;
+
     virtual void display(QPainter &paint) = 0;
 
     virtual void move() = 0;

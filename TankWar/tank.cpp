@@ -1,9 +1,9 @@
 #include "tank.h"
 
 int Tank::steps[kindNum] = {12,12,12,12};
-int Tank::lifes[kindNum] = {10000,100,200,300};
+int Tank::lifes[kindNum] = {500,100,200,300};
 int Tank::attacks[kindNum] = {100,100,100,100};
-
+        // 0玩家 1：敌方坦克1 2：敌方坦克2 3：敌方坦克3
 //玩家坦克
 Tank::Tank()
 {
@@ -13,10 +13,10 @@ Tank::Tank()
 
     calSphere();
 
-    group = 0;
     step = 12;
     kind = 0;
     dir = UP;
+    missileNum = 0;
 
     isMove = false;
     isFire = false;
@@ -28,17 +28,16 @@ Tank::Tank()
 }
 
 //敌方坦克
-Tank::Tank(int row, int col, Dir dir,int kind, int group)
+Tank::Tank(int row, int col, Dir dir,int kind)
 {
     pos.setX(row * CELLWIDTH);
     pos.setY(col * CELLHEIGHT);
 
     calSphere();
 
-    this->group = group;
     this->dir = dir;
     this->kind = kind;
-
+    this->missileNum = 0;
 
     disappear = false;
     isFire = false;
@@ -89,10 +88,18 @@ void Tank::display(QPainter &paint)
     }
 }
 
+
 void Tank::setDir(Dir dir)
 {
     this->dir = dir;
 }
+
+
+void Tank::setMissileNum()
+{
+    missileNum = 0;
+}
+
 
 void Tank::move()
 {
@@ -112,10 +119,10 @@ void Tank::move()
         switch (dir)
         {
         case UP:
-            pos.setY(pos.y() + step);
+            pos.setY(pos.y() - step);
             break;
         case DOWN:
-            pos.setY(pos.y() - step);
+            pos.setY(pos.y() + step);
             break;
         case LEFT:
             pos.setX(pos.x() - step);
@@ -129,6 +136,8 @@ void Tank::move()
     }
 
 }
+
+
 void Tank::moveForJudge()
 {
     if(isMove==true)
@@ -151,15 +160,19 @@ void Tank::moveForJudge()
         calSphere();
     }
 }
+
+
 void Tank::startMove()
 {
     isMove = true;
 }
 
+
 void Tank::stopMove()
 {
     isMove = false;
 }
+
 
 void Tank::fire()
 {
@@ -173,15 +186,24 @@ void Tank::fire()
     }
 }
 
+
+bool Tank::getIsFire()const
+{
+    return isFire;
+}
+
+
 void Tank::startFire()
 {
     isFire = true;
 }
 
+
 void Tank::stopFire()
 {
     isFire = false;
 }
+
 
 bool Tank::isToCollision()
 {
@@ -199,7 +221,7 @@ bool Tank::isToCollision()
         //碰撞地图边界
         return true;
 
-    if(info.map->getCell(nowPos.x(), nowPos.y())->is_penetration_of_tank() == false)
+    if(info.map->getCell(nowPos.x() / CELLWIDTH, nowPos.y() / CELLHEIGHT)->is_penetration_of_tank() == false)
        //碰撞到坦克无法穿越的地形
         return true;
     else
@@ -212,6 +234,7 @@ bool Tank::isToCollision()
     //敌方坦克碰撞到敌方坦克
 
 }
+
 
 void Tank::beAttacked(int attack)
 {

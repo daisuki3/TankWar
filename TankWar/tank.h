@@ -13,7 +13,11 @@ class Tank: public Base
 private:
         int kind;
         // 0玩家 1：敌方坦克1 2：敌方坦克2 3：敌方坦克3
+
         int group;
+        //玩家0 敌方1
+
+        int missileNum;
 
         bool isMove;
         bool isFire;
@@ -25,17 +29,20 @@ public:
     static int attacks[kindNum];
 
     Tank();
-    Tank(int, int, Dir = UP, int = 0, int = 0);
+    Tank(int row, int col, Dir = UP, int kind = 0);
 
     friend class Missile;
+    friend class Cell;
+
     QList<Missile*> missilesOfTank;
 
-    virtual void display(QPainter& paint) override;
-    virtual void move() override;
-    virtual void beAttacked(int attack) override;
-    virtual void calSphere() override;
+    void display(QPainter& paint) override;
+    void move() override;
+    void beAttacked(int attack) override;
+    void calSphere() override;
 
     void setDir(Dir dir);
+    void setMissileNum();
 
     void fire();
     bool getIsFire() const;

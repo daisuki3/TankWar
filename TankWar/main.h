@@ -35,10 +35,10 @@ struct INFO
     //npc坦克
     QList<Tank*> enemytanks;
 
-    //QList<Missile*> playerMissiles;
+    QList<Missile*> playerMissiles;
 
     //地图块图片
-    QImage cellImages[5];
+    QImage cellImages[3];
 
     //坦克上下左右的图片
     QImage tankImages[16];
@@ -57,6 +57,7 @@ struct INFO
     //已击毁敌方坦克总数
     int enemyTankDestroyed;
 
+    int playerTanksNum;
 };
 
 extern INFO info;

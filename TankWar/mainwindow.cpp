@@ -1,5 +1,4 @@
 #include "mainwindow.h"
-//#include "ui_mainwindow.h"
 
 #include <QRect>
 #include <QPen>
@@ -10,6 +9,10 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
+
+    Sleep(1000);
+
+
 
     showLunchInfo();
     showTips();
@@ -24,24 +27,30 @@ MainWindow::MainWindow(QWidget *parent)
     paint.setPen(QColor(255,0,0));
 
 
-    score = new QLabel(this);
-    tankNum = new QLabel(this);
-    tankLife = new QLabel(this);
+    score1 = new QLabel(this);
+    score2 = new QLabel(this);
+
+    tankLife1 = new QLabel(this);
+    tankLife2 = new QLabel(this);
+
     gamepause = new QLabel(this);
 
+    info.playerTanksNum = 1;
     initGame();
 }
 
+
 MainWindow::~MainWindow()
 {
-    //delete ui;
 
     timer->stop();
     delete  timer;
 }
 
+
 void MainWindow::initGame()
 {
+    move(600,50);
     //载入信息
 
     status = gaming;
@@ -54,45 +63,66 @@ void MainWindow::initGame()
     info.enemyTank2Num = 1;
     info.enemyTank3Num = 1;
 
+    Tank* tmp = new Tank(0,0,DOWN,1);
+    info.enemytanks.append(tmp);
+
+    tmp = new Tank(0,0,DOWN,2);
+    info.enemytanks.append(tmp);
+
+    tmp = new Tank(0,0,DOWN,3);
+    info.enemytanks.append(tmp);
+
+
+
     info.enemyTankDestroyed = 0;
 
 
+
     /*
-     * 加入敌方坦克
-     */
+     * 初始化图片
+     * 1 老王
+     * 2 墙
+     * 3 铁墙
+     * 4 水
+     * 5 地
+     * */
 
-    //初始化图片
-    info.cellImages[0].load(":/new/prefix1/pixs/1_1.png");
-    info.cellImages[1].load(":/new/prefix1/pixs/2_1.png");
-    info.cellImages[2].load(":/new/prefix1/pixs/3.png");
-    info.cellImages[3].load(":/new/prefix1/pixs/4.png");
-    info.cellImages[4].load(":/new/prefix1/pixs/5.png");
+    //墙
+    info.cellImages[0].load(":/new/prefix1/1_1.png");
+    //铁墙
+    info.cellImages[1].load(":/new/prefix1/2_1.png");
+    //水
+    info.cellImages[2].load(":/new/prefix1/4.png");
+    //地
 
-    info.tankImages[0].load(":/new/prefix1/pixs/p1tankU.png");
-    info.tankImages[1].load(":/new/prefix1/pixs/p1tankD.png");
-    info.tankImages[2].load(":/new/prefix1/pixs/p1tankL.png");
-    info.tankImages[3].load(":/new/prefix1/pixs/p1tankR.png");
+    info.tankImages[0].load(":/new/prefix1/p1tankU.png");
+    info.tankImages[1].load(":/new/prefix1/p1tankD.png");
+    info.tankImages[2].load(":/new/prefix1/p1tankL.png");
+    info.tankImages[3].load(":/new/prefix1/p1tankR.png");
 
-    info.tankImages[4].load(":/new/prefix1/pixs/enemy1U.png");
-    info.tankImages[5].load(":/new/prefix1/pixs/enemy1D.png");
-    info.tankImages[6].load(":/new/prefix1/pixs/enemy1L.png");
-    info.tankImages[7].load(":/new/prefix1/pixs/enemy1R.png");
+    info.tankImages[4].load(":/new/prefix1/enemy1U.png");
+    info.tankImages[5].load(":/new/prefix1/enemy1D.png");
+    info.tankImages[6].load(":/new/prefix1/enemy1L.png");
+    info.tankImages[7].load(":/new/prefix1/enemy1R.png");
 
-    info.tankImages[8].load(":/new/prefix1/pixs/enemy2U.png");
-    info.tankImages[9].load(":/new/prefix1/pixs/enemy2D.png");
-    info.tankImages[10].load(":/new/prefix1/pixs/enemy2L.png");
-    info.tankImages[11].load(":/new/prefix1/pixs/enemy2R.png");
+    info.tankImages[8].load(":/new/prefix1/enemy2U.png");
+    info.tankImages[9].load(":/new/prefix1/enemy2D.png");
+    info.tankImages[10].load(":/new/prefix1/enemy2L.png");
+    info.tankImages[11].load(":/new/prefix1/enemy2R.png");
 
-    info.tankImages[12].load(":/new/prefix1/pixs/enemy3U.png");
-    info.tankImages[13].load(":/new/prefix1/pixs/enemy3D.png");
-    info.tankImages[14].load(":/new/prefix1/pixs/enemy3L.png");
-    info.tankImages[15].load(":/new/prefix1/pixs/enemy3R.png");
+    info.tankImages[12].load(":/new/prefix1/enemy3U.png");
+    info.tankImages[13].load(":/new/prefix1/enemy3D.png");
+    info.tankImages[14].load(":/new/prefix1/enemy3L.png");
+    info.tankImages[15].load(":/new/prefix1/enemy3R.png");
 
-    info.missilePic.load(":/new/prefix1/pixs/tankMissile.png");
-    info.bossPic.load(":/new/prefix1/pixs/boss.png");
+    info.missilePic.load(":/new/prefix1/tankMissile.png");
+    info.bossPic.load(":/new/prefix1/boss.png");
+
+    loadCell();
+
+    status = gaming;
 
     timer = new QTimer(this);
-
     timer->setInterval(TIME_INTERVAL);
     connect(timer, SIGNAL(timeout()),
             this,SLOT(timeFun()));
@@ -100,6 +130,39 @@ void MainWindow::initGame()
     timer->start();
 
 }
+
+
+void MainWindow::loadCell()
+{
+    info.map->loadMap();
+}
+
+
+void MainWindow::showPlayerInfo()
+{
+    score1->setText(tr("score:"));
+    QRect r1(790,90,80,20);
+    score1->setGeometry(r1);
+
+    QString str1;
+    score2->setText(str1.setNum(info.score));
+    QRect r2(860,110,80,20);
+    score2->setGeometry(r2);
+
+
+
+
+    tankLife1->setText(tr("life:"));
+    QRect r3(790,650,100,20);
+    tankLife1->setGeometry(r3);
+
+    QString str2;
+    tankLife2->setText(str2.setNum(info.player->life));
+    QRect r4(880,670,80,20);
+    tankLife2->setGeometry(r4);
+
+}
+
 
 void MainWindow::showLunchInfo()
 {
@@ -109,6 +172,7 @@ void MainWindow::showLunchInfo()
 
     return;
 }
+
 
 void MainWindow::showTips()
 {
@@ -121,11 +185,13 @@ void MainWindow::showTips()
                                   "\n\n  G 恢复"));
 }
 
+
 void MainWindow::showPauseInfo()
 {
     gamepause->setText(tr("暂停!"));
     gamepause->setGeometry(865,755,70,20);
 }
+
 
 void MainWindow::showLoss()
 {
@@ -135,6 +201,7 @@ void MainWindow::showLoss()
                                    tr("游戏结束，你输了"));
 }
 
+
 void MainWindow::showEnd()
 {
     setGeometry(605,83,200,150);
@@ -143,6 +210,7 @@ void MainWindow::showEnd()
                                       "\n你赢了!"));
     return;
 }
+
 
 void MainWindow::paintEvent(QPaintEvent* event)
 {
@@ -161,9 +229,12 @@ void MainWindow::paintEvent(QPaintEvent* event)
         info.enemytanks.at(i)->display(paint);
     }
 
+    this->showPlayerInfo();
+
     paint.end();
 
 }
+
 
 void MainWindow::keyPressEvent(QKeyEvent* event)
 {
@@ -184,6 +255,7 @@ void MainWindow::keyPressEvent(QKeyEvent* event)
         {
             status=gaming;
         }
+
 
     if(status == gaming)
     {
@@ -215,6 +287,7 @@ void MainWindow::keyPressEvent(QKeyEvent* event)
 
     update();
 }
+
 
 void MainWindow::keyReleaseEvent(QKeyEvent *event)
 {
@@ -317,4 +390,97 @@ void MainWindow::timeFun()
         info.enemytanks.at(i)->fire();
     }
 
+    missileMeet();
+
+    if(isEnemyAllDisappeared())
+    {
+        status = pause;
+
+        timer->stop();
+        showEnd();
+
+        this->close();
+    }
+
+    this->isOver();
+    qDebug("time out");
+    update();
+
+}
+
+
+bool MainWindow::isEnemyAllDisappeared() const
+{
+    for(int i = 0; info.enemytanks.count(); ++i)
+    {
+        if(info.enemytanks.at(i)->isDisappear() == false)
+            return false;
+    }
+
+    return true;
+}
+
+
+void MainWindow::missileMeet()
+{
+    int missileNum = info.player->missilesOfTank.count();
+
+      if(missileNum==1)
+      {
+          for(int i = 0; i < info.enemytanks.count(); ++i)
+                  {
+                      if(info.enemytanks.at(i)->getIsFire()
+                              && info.player->missilesOfTank.at(0)->isBoom(info.enemytanks.at(i)->missilesOfTank.at(0)))
+                      {
+                          //玩家导弹消失
+                          info.player->missilesOfTank.at(0)->setDisappear(true);
+
+                          //敌方导弹消失
+                          info.enemytanks.at(i)->missilesOfTank.at(0)->setDisappear(true);
+
+                          //恢复导弹数
+                          info.player->setMissileNum();
+                          info.enemytanks.at(i)->setMissileNum();
+
+                          break;
+
+                      }
+
+                  }
+      }
+}
+
+
+void MainWindow::isOver()
+{
+    if(info.boss->isDisappear()
+            ||(info.player->isDisappear() && info.playerTanksNum == playerTanksNumTmp))
+    {
+        status=pause;
+        timer->stop();
+        showLoss();
+
+        //删除敌方坦克
+        for(int i = 0; i < info.enemytanks.count();++i)
+        {
+            bool tmp=true;
+            info.enemytanks.at(i)->setDisappear(tmp);
+            delete info.enemytanks.at(i);
+            info.enemytanks.removeAt(i);
+        }
+
+        //删除玩家坦克
+
+        info.player=NULL;
+        for(int i=0;i<ROW;++i)
+        {
+            for(int j=0;j<COL;++j)
+            {
+                *info.map->getCell(i,j)=NULL;
+                delete info.map->getCell(i,j);
+            }
+        }
+
+        this->close();
+    }
 }

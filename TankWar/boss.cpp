@@ -2,12 +2,12 @@
 
 Boss::Boss()
 {
-    bool dis = false;
 
-    setDisappear(dis);
+    setDisappear(false);
 
     this->pos.setX(6 * CELLWIDTH);
     this->pos.setY(12 * CELLHEIGHT);
+    this->life = 1;
 
     this->calSphere();
 }
@@ -20,12 +20,13 @@ void Boss::display(QPainter &paint)
 
 void Boss::calSphere()
 {
-    rectSphere.setRect(pos.x(), pos.y(), CELLWIDTH, CELLHEIGHT);
+    if(isDisappear() == false)
+        rectSphere.setRect(pos.x(), pos.y(), CELLWIDTH, CELLHEIGHT);
 }
 
 void Boss::beAttacked(int attack)
 {
-    setDisappear(false);
+    setDisappear(true);
 
     return ;
 }

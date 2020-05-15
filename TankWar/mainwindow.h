@@ -15,6 +15,7 @@
 #include <QCloseEvent>
 #include <QLabel>
 
+
 #define TIME_INTERVAL 60
 
 
@@ -35,17 +36,17 @@ public:
 
     void initGame();
 
-    //void loadCell();
+    void loadCell();
 
-    //void isAllDisappeared() const;
+    bool isEnemyAllDisappeared() const;
 
-   // void missileMeet();
+    void missileMeet();
 
-    //void isOver();
+    void isOver();
 
     GameStatus getGameStatus() const;
 
-    //void showPlayerInfo();
+    void showPlayerInfo();
 
 private slots:
   void timeFun();
@@ -67,21 +68,20 @@ private slots:
   void showEnd();
 
 private:
-    Ui::MainWindow *ui;
 
     void setGameStatus(GameStatus status);
     GameStatus status;
+    Map map;
 
     QTimer* timer;
+
     QPainter paint;
 
-    QLabel* score;
+    QLabel *score1, *score2;
+    QLabel *tankLife1,*tankLife2;
+    QLabel *gamepause;
 
-    QLabel* tankNum;
-
-    QLabel* tankLife;
-
-    QLabel* gamepause;
+    int playerTanksNumTmp;
 
 };
 

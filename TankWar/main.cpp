@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
     QFont font("Microsoft YaHei UI",14);
     a.setFont(font);
 
-    QPixmap pixmap(":/new/icon/pixs/start.png");
+    QPixmap pixmap(":/new/prefix1/start.png");
     QSplashScreen splash(pixmap);
     splash.move(*p1);
     splash.show();

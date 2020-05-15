@@ -8,20 +8,19 @@
 
 class Missile: public Base
 {
-private:
-    int group;
 public:
 
     Missile(const Tank& tank);
 
     friend class Tank;
 
-    virtual void display(QPainter& paint) override;
-    virtual void move() override;
-    virtual void beAttacked(int attack) override;
-    virtual void calSphere() override;
+    void display(QPainter& paint) override;
+    void move() override;
+    void beAttacked(int attack) override;
+    void calSphere() override;
 
-    int getGroup() const;
+    int kind;
+    int group;
 };
 
 #endif // MISSILE_H
