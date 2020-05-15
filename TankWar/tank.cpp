@@ -1,9 +1,11 @@
 #include "tank.h"
 
 int Tank::steps[kindNum] = {12,12,12,12};
-int Tank::lifes[kindNum] = {500,100,200,300};
+int Tank::lifes[kindNum] = {500,300,400,500};
 int Tank::attacks[kindNum] = {100,100,100,100};
         // 0玩家 1：敌方坦克1 2：敌方坦克2 3：敌方坦克3
+
+
 //玩家坦克
 Tank::Tank()
 {
@@ -17,7 +19,7 @@ Tank::Tank()
     step = 12;
     kind = 0;
     dir = UP;
-    missileNum = 0;
+    //missileNum = 0;
 
     isMove = false;
     isFire = false;
@@ -27,6 +29,7 @@ Tank::Tank()
     attack = attacks[kind];
 
 }
+
 
 //敌方坦克
 Tank::Tank(int row, int col, Dir dir,int kind)
@@ -39,20 +42,24 @@ Tank::Tank(int row, int col, Dir dir,int kind)
     this->group = 1;
     this->dir = dir;
     this->kind = kind;
-    this->missileNum = 0;
+   // this->missileNum = 0;
 
     disappear = false;
     isFire = false;
+    isMove = false;
+
     step = steps[kind];
     life = lifes[kind];
     attack = attacks[kind];
 
 }
 
+
 void Tank::calSphere()
 {
     rectSphere.setRect(pos.x(), pos.y(), CELLWIDTH, CELLHEIGHT);
 }
+
 
 void Tank::display(QPainter &paint)
 {
@@ -96,12 +103,12 @@ void Tank::setDir(Dir dir)
     this->dir = dir;
 }
 
-
+/*
 void Tank::setMissileNum()
 {
     missileNum = 0;
 }
-
+*/
 
 void Tank::move()
 {
@@ -277,6 +284,8 @@ bool Tank::isToCollision()
                 }
             }
         }
+
+
     }
 
 

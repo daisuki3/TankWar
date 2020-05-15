@@ -67,6 +67,8 @@ private slots:
 
   void showEnd();
 
+  void showResume();
+
 private:
 
     void setGameStatus(GameStatus status);

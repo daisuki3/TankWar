@@ -189,7 +189,14 @@ void MainWindow::showTips()
 void MainWindow::showPauseInfo()
 {
     gamepause->setText(tr("暂停!"));
-    gamepause->setGeometry(865,755,70,20);
+    gamepause->setGeometry(800,500,70,20);
+}
+
+
+void MainWindow::showResume()
+{
+    gamepause->setText(tr("游戏中"));
+    gamepause->setGeometry(800,500,70,20);
 }
 
 
@@ -254,6 +261,7 @@ void MainWindow::keyPressEvent(QKeyEvent* event)
     else if(event->key()==Qt::Key_G)
         {
             status=gaming;
+            showResume();
         }
 
 
@@ -321,8 +329,11 @@ void MainWindow::timeFun()
     for(int i = 0; i < info.enemytanks.count(); ++i)
     {
 
-        if(qrand()%5 == 0)
+        if(qrand()%2 == 0)
         {
+            qDebug("%d",qrand());
+            qDebug("enemy go");
+
             info.enemytanks.at(i)->startMove();
             info.enemytanks.at(i)->startFire();
         }
@@ -334,7 +345,7 @@ void MainWindow::timeFun()
 
         if(qrand()%5==0)
         {
-            info.enemytanks.at(i)->stopFire();
+            //info.enemytanks.at(i)->stopFire();
         }
 
         if(qrand()%10==0)
@@ -391,7 +402,7 @@ void MainWindow::timeFun()
 
    // missileMeet();
 
-    /*
+
     if(isEnemyAllDisappeared())
     {
         status = pause;
@@ -401,12 +412,11 @@ void MainWindow::timeFun()
 
         this->close();
     }
-*/
+
 
     this->isOver();
     qDebug("time out");
     update();
-
 }
 
 
@@ -421,7 +431,7 @@ bool MainWindow::isEnemyAllDisappeared() const
     return true;
 }
 
-
+/*
 void MainWindow::missileMeet()
 {
     int missileNum = info.player->missilesOfTank.count();
@@ -449,7 +459,7 @@ void MainWindow::missileMeet()
                   }
       }
 }
-
+*/
 
 void MainWindow::isOver()
 {

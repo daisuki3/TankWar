@@ -17,7 +17,7 @@ private:
         int group;
         //玩家0 敌方1
 
-        int missileNum;
+        //int missileNum;
 
         bool isMove;
         bool isFire;
