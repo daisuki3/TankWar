@@ -32,10 +32,11 @@
 原因：正在找
 
 7. 玩家坦克卡住
+![tank_stuck](https://github.com/daisuki3/TankWar/blob/master/de/tank_stuck.png)
 
 
 原因：movejudge函数中，方向计算逻辑有误
-
+![movejudge_wrong](https://github.com/daisuki3/TankWar/blob/master/de/movejudge_wrong.png)
 8. unknown signal
 
 

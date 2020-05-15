@@ -28,7 +28,7 @@ void Boss::beAttacked(int attack)
 {
     setDisappear(true);
 
-    return ;
+    return;
 }
 
 void Boss::move()

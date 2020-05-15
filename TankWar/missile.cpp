@@ -67,7 +67,6 @@ void Missile::move()
 
                 qDebug("tank hit cell");
 
-
             }
         }
     }
