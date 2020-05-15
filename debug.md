@@ -6,20 +6,20 @@
 ![paint_GUI](https://github.com/daisuki3/TankWar/tree/master/de\paintGUI.png)
 
 3. 地图初始化错误
-![map_init](https://github.com/daisuki3/TankWar/tree/master/de\map_init.png)
-![cell_init](https://github.com/daisuki3/TankWar/tree/master/de\cell_init.png)
+![map_init](https://github.com/daisuki3/TankWar/tree/master/de/map_init.png)
+![cell_init](https://github.com/daisuki3/TankWar/tree/master/de/cell_init.png)
 
 4. 程序异常结束 原因：
-![exit](https://github.com/daisuki3/TankWar/tree/master/de\exit.png)
+![exit](https://github.com/daisuki3/TankWar/tree/master/de/exit.png)
 
 5. 数组越界 原因：函数调用时，错误的参数传递
-![array](https://github.com/daisuki3/TankWar/tree/master/de\array.png)
+![array](https://github.com/daisuki3/TankWar/tree/master/de/array.png)
 
 6. 出错地点
-![get_cell](https://github.com/daisuki3/TankWar/tree/master/de\get_cell.png)
+![get_cell](https://github.com/daisuki3/TankWar/tree/master/de/get_cell.png)
 
 7. 攻击BOSS BOSS不死亡
-![fire_boss](https://github.com/daisuki3/TankWar/tree/master/de\fire_boss.png)
+![fire_boss](https://github.com/daisuki3/TankWar/tree/master/de/fire_boss.png)
 
 
 
