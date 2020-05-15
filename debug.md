@@ -15,11 +15,10 @@
 5. 数组越界 原因：函数调用时，错误的参数传递
 ![array](https://github.com/daisuki3/TankWar/blob/master/de/array.png)
 
-
-6. 出错地点
+出错地点
 ![get_cell](https://github.com/daisuki3/TankWar/tree/master/de/get_cell.png)
 
-7. 攻击BOSS BOSS不死亡
+6. 攻击BOSS BOSS不死亡
 ![fire_boss](https://github.com/daisuki3/TankWar/tree/master/de/fire_boss.png)
 
 
