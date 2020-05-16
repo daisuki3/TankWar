@@ -24,5 +24,6 @@
         <file>p1tankU.png</file>
         <file>start.png</file>
         <file>tankMissile.png</file>
+        <file>tank_boom.png</file>
     </qresource>
 </RCC>

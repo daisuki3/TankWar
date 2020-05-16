@@ -248,6 +248,7 @@ Makefile: ../TankWar/TankWar.pro ../../Qt/5.14.2/mingw73_64/mkspecs/win32-g++/qm
 		../../Qt/5.14.2/mingw73_64/mkspecs/features/qt_config.prf \
 		../../Qt/5.14.2/mingw73_64/mkspecs/win32-g++/qmake.conf \
 		../../Qt/5.14.2/mingw73_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../Qt/5.14.2/mingw73_64/mkspecs/features/exclusive_builds.prf \
 		../../Qt/5.14.2/mingw73_64/mkspecs/features/toolchain.prf \
 		../../Qt/5.14.2/mingw73_64/mkspecs/features/default_pre.prf \
@@ -276,7 +277,6 @@ Makefile: ../TankWar/TankWar.pro ../../Qt/5.14.2/mingw73_64/mkspecs/win32-g++/qm
 		../../Qt/5.14.2/mingw73_64/lib/Qt5Gui.prl \
 		../../Qt/5.14.2/mingw73_64/lib/Qt5Core.prl \
 		../../Qt/5.14.2/mingw73_64/lib/qtmain.prl \
-		.qmake.stash \
 		../../Qt/5.14.2/mingw73_64/mkspecs/features/build_pass.prf \
 		../TankWar/pixs/src.qrc
 	$(QMAKE) -o Makefile ..\TankWar\TankWar.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
@@ -458,6 +458,7 @@ Makefile: ../TankWar/TankWar.pro ../../Qt/5.14.2/mingw73_64/mkspecs/win32-g++/qm
 ../../Qt/5.14.2/mingw73_64/mkspecs/features/qt_config.prf:
 ../../Qt/5.14.2/mingw73_64/mkspecs/win32-g++/qmake.conf:
 ../../Qt/5.14.2/mingw73_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../Qt/5.14.2/mingw73_64/mkspecs/features/exclusive_builds.prf:
 ../../Qt/5.14.2/mingw73_64/mkspecs/features/toolchain.prf:
 ../../Qt/5.14.2/mingw73_64/mkspecs/features/default_pre.prf:
@@ -486,7 +487,6 @@ Makefile: ../TankWar/TankWar.pro ../../Qt/5.14.2/mingw73_64/mkspecs/win32-g++/qm
 ../../Qt/5.14.2/mingw73_64/lib/Qt5Gui.prl:
 ../../Qt/5.14.2/mingw73_64/lib/Qt5Core.prl:
 ../../Qt/5.14.2/mingw73_64/lib/qtmain.prl:
-.qmake.stash:
 ../../Qt/5.14.2/mingw73_64/mkspecs/features/build_pass.prf:
 ../TankWar/pixs/src.qrc:
 qmake: FORCE

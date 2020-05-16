@@ -45,6 +45,7 @@ struct INFO
 
     QImage missilePic;
     QImage bossPic;
+    QImage boomPic;
 
     //玩家总得分
     int score;

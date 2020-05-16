@@ -1,8 +1,8 @@
 #include "tank.h"
 
 int Tank::steps[kindNum] = {12,12,12,12};
-int Tank::lifes[kindNum] = {500,300,400,500};
-int Tank::attacks[kindNum] = {100,100,100,100};
+int Tank::lifes[kindNum] = {20,10,30,40};
+int Tank::attacks[kindNum] = {10,1,3,7};
         // 0玩家 1：敌方坦克1 2：敌方坦克2 3：敌方坦克3
 
 
@@ -19,6 +19,7 @@ Tank::Tank()
     step = 12;
     kind = 0;
     dir = UP;
+    die = 0;
     //missileNum = 0;
 
     isMove = false;
@@ -42,13 +43,14 @@ Tank::Tank(int row, int col, Dir dir,int kind)
     this->group = 1;
     this->dir = dir;
     this->kind = kind;
+    this->die = 0;
    // this->missileNum = 0;
 
     disappear = false;
-    isFire = true;
+    isFire = false;
     isMove = false;
 
-    step = steps[kind];
+    step = 5;
     life = lifes[kind];
     attack = attacks[kind];
 
@@ -80,6 +82,12 @@ void Tank::display(QPainter &paint)
             missilesOfTank.removeAt(i);
             i--;
         }
+    }
+
+    if(die == 1)
+    {
+        paint.drawImage(rectSphere,info.boomPic);
+        die = 2;
     }
 
     //绘制坦克
@@ -305,8 +313,12 @@ void Tank::beAttacked(int attack)
 
     if(life <= 0)
     {
+
         setDisappear(true);
+        die = 1;
         life = 0;
     }
 
 }
+
+

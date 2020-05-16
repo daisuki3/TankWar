@@ -139,6 +139,7 @@ release/qrc_src.cpp: ../TankWar/pixs/src.qrc \
 		../TankWar/pixs/enemy2L.png \
 		../TankWar/pixs/enemy3R.png \
 		../TankWar/pixs/start.png \
+		../TankWar/pixs/tank_boom.png \
 		../TankWar/pixs/tankMissile.png \
 		../TankWar/pixs/enemy3U.png \
 		../TankWar/pixs/p1tankD.png \
@@ -603,7 +604,48 @@ release/cell.o: ../TankWar/cell.cpp ../TankWar/cell.h \
 		../../Qt/5.14.2/mingw73_64/include/QtGui/qfontmetrics.h \
 		../TankWar/main.h \
 		../../Qt/5.14.2/mingw73_64/include/QtCore/QList \
-		../../Qt/5.14.2/mingw73_64/include/QtGui/QImage
+		../../Qt/5.14.2/mingw73_64/include/QtGui/QImage \
+		../TankWar/mainwindow.h \
+		../TankWar/map.h \
+		../TankWar/boss.h \
+		../TankWar/tank.h \
+		../TankWar/missile.h \
+		../../Qt/5.14.2/mingw73_64/include/QtWidgets/QMainWindow \
+		../../Qt/5.14.2/mingw73_64/include/QtWidgets/qmainwindow.h \
+		../../Qt/5.14.2/mingw73_64/include/QtWidgets/qtwidgetsglobal.h \
+		../../Qt/5.14.2/mingw73_64/include/QtWidgets/qtwidgets-config.h \
+		../../Qt/5.14.2/mingw73_64/include/QtWidgets/qwidget.h \
+		../../Qt/5.14.2/mingw73_64/include/QtGui/qpalette.h \
+		../../Qt/5.14.2/mingw73_64/include/QtWidgets/qsizepolicy.h \
+		../../Qt/5.14.2/mingw73_64/include/QtGui/qcursor.h \
+		../../Qt/5.14.2/mingw73_64/include/QtGui/qkeysequence.h \
+		../../Qt/5.14.2/mingw73_64/include/QtGui/qevent.h \
+		../../Qt/5.14.2/mingw73_64/include/QtCore/qvariant.h \
+		../../Qt/5.14.2/mingw73_64/include/QtCore/qmap.h \
+		../../Qt/5.14.2/mingw73_64/include/QtCore/qdebug.h \
+		../../Qt/5.14.2/mingw73_64/include/QtCore/qtextstream.h \
+		../../Qt/5.14.2/mingw73_64/include/QtCore/qlocale.h \
+		../../Qt/5.14.2/mingw73_64/include/QtCore/qset.h \
+		../../Qt/5.14.2/mingw73_64/include/QtCore/qcontiguouscache.h \
+		../../Qt/5.14.2/mingw73_64/include/QtCore/qurl.h \
+		../../Qt/5.14.2/mingw73_64/include/QtCore/qurlquery.h \
+		../../Qt/5.14.2/mingw73_64/include/QtCore/qfile.h \
+		../../Qt/5.14.2/mingw73_64/include/QtCore/qfiledevice.h \
+		../../Qt/5.14.2/mingw73_64/include/QtGui/qvector2d.h \
+		../../Qt/5.14.2/mingw73_64/include/QtGui/qtouchdevice.h \
+		../../Qt/5.14.2/mingw73_64/include/QtWidgets/qtabwidget.h \
+		../../Qt/5.14.2/mingw73_64/include/QtGui/qicon.h \
+		../../Qt/5.14.2/mingw73_64/include/QtGui/QKeyEvent \
+		../../Qt/5.14.2/mingw73_64/include/QtCore/QTimer \
+		../../Qt/5.14.2/mingw73_64/include/QtCore/qtimer.h \
+		../../Qt/5.14.2/mingw73_64/include/QtCore/qbasictimer.h \
+		../../Qt/5.14.2/mingw73_64/include/QtWidgets/QMessageBox \
+		../../Qt/5.14.2/mingw73_64/include/QtWidgets/qmessagebox.h \
+		../../Qt/5.14.2/mingw73_64/include/QtWidgets/qdialog.h \
+		../../Qt/5.14.2/mingw73_64/include/QtGui/QCloseEvent \
+		../../Qt/5.14.2/mingw73_64/include/QtWidgets/QLabel \
+		../../Qt/5.14.2/mingw73_64/include/QtWidgets/qlabel.h \
+		../../Qt/5.14.2/mingw73_64/include/QtWidgets/qframe.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\cell.o ..\TankWar\cell.cpp
 
 release/main.o: ../TankWar/main.cpp ../TankWar/mainwindow.h \

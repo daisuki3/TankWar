@@ -4,7 +4,7 @@
 
 #include <QImage>
 
-int Cell::lifes[cellNum]={1,1,10000,0,0};
+int Cell::lifes[cellNum]={1,1,1000,0,0};
 //老王=1 墙=2 铁墙=10000 水=0 地=0
 bool Cell::penetrations_of_tank[cellNum] = {false,false,false,false,true};
 bool Cell::penetrations_of_missile[cellNum] = {false,false,false,true,true};

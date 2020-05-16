@@ -18,6 +18,7 @@ private:
         //玩家0 敌方1
 
         //int missileNum;
+        int die;
 
         bool isMove;
         bool isFire;
@@ -37,6 +38,7 @@ public:
     QList<Missile*> missilesOfTank;
 
     void display(QPainter& paint) override;
+    void displayBoom(QPainter& paint);
     void move() override;
     void beAttacked(int attack) override;
     void calSphere() override;

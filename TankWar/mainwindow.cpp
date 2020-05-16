@@ -69,7 +69,7 @@ void MainWindow::initGame()
     tmp = new Tank(6,6,DOWN,2);
     info.enemytanks.append(tmp);
 
-    tmp = new Tank(2,12,DOWN,3);
+    tmp = new Tank(1,5,DOWN,3);
     info.enemytanks.append(tmp);
 
 
@@ -117,6 +117,7 @@ void MainWindow::initGame()
 
     info.missilePic.load(":/new/prefix1/tankMissile.png");
     info.bossPic.load(":/new/prefix1/boss.png");
+    info.boomPic.load(":/new/prefix1/tank_boom.png");
 
     loadCell();
 
@@ -323,62 +324,56 @@ void MainWindow::timeFun()
     //获取当前时间
     QTime time = QTime::currentTime();
     //设置随机数种子
-    qsrand(time.msec()+time.second()*100000);
+    qsrand(time.msec() + time.second() * 100000);
 
     //敌人坦克控制
     for(int i = 0; i < info.enemytanks.count(); ++i)
     {
 
-        if(qrand()%2 == 0)
+        if(qrand() % 10 == 0)
         {
-            qDebug("%d",qrand());
             qDebug("enemy move and fire");
 
             info.enemytanks.at(i)->startMove();
-           // info.enemytanks.at(i)->startFire();
+
         }
 
-        if(qrand()%10==0)
+        if(qrand() % 10 == 0)
         {
-            info.enemytanks.at(i)->stopMove();
+            info.enemytanks.at(i)->startFire();
         }
 
-        if(qrand()%5==0)
+        if(qrand() % 10 == 0)
         {
-            //info.enemytanks.at(i)->stopFire();
-        }
-
-        if(qrand()%10==0)
-        {
-            tmp=qrand()%9;
+            tmp = qrand() % 9;
             switch(tmp)
             {
             case 0:
-                tmpDir=UP;
+                tmpDir = LEFT;
                 break;
             case 1:
-                tmpDir=DOWN;
+                tmpDir = DOWN;
                 break;
             case 2:
-                tmpDir=LEFT;
+                tmpDir = LEFT;
                 break;
             case 3:
-                tmpDir=RIGHT;
+                tmpDir = RIGHT;
                 break;
             case 4:
-                tmpDir=DOWN;
+                tmpDir = DOWN;
                 break;
             case 5:
-                tmpDir=DOWN;
+                tmpDir = RIGHT;
                 break;
             case 6:
-                tmpDir=DOWN;
+                tmpDir = UP;
                 break;
             case 7:
-                tmpDir=LEFT;
+                tmpDir = LEFT;
                 break;
             case 8:
-                tmpDir=RIGHT;
+                tmpDir = RIGHT;
                 break;
             default:
                 break;
@@ -400,7 +395,19 @@ void MainWindow::timeFun()
         info.enemytanks.at(i)->fire();
     }
 
-   // missileMeet();
+
+    for(int i = 0; i < info.enemytanks.count(); ++i)
+    {
+        if(qrand() % 4 == 0)
+        {
+            info.enemytanks.at(i)->stopMove();
+        }
+
+        if(qrand() % 3 == 0)
+        {
+            info.enemytanks.at(i)->stopFire();
+        }
+    }
 
 
     if(isEnemyAllDisappeared())
@@ -418,6 +425,7 @@ void MainWindow::timeFun()
     this->isOver();
     qDebug("time out");
     update();
+
 }
 
 
@@ -432,35 +440,7 @@ bool MainWindow::isEnemyAllDisappeared() const
     return true;
 }
 
-/*
-void MainWindow::missileMeet()
-{
-    int missileNum = info.player->missilesOfTank.count();
 
-      if(missileNum == 1)
-      {
-          for(int i = 0; i < info.enemytanks.count(); ++i)
-                  {
-                      if(info.enemytanks.at(i)->getIsFire() == true
-                              && info.player->missilesOfTank.at(0)->isBoom(info.enemytanks.at(i)->missilesOfTank.at(0)))
-                      {
-                          //玩家导弹消失
-                          info.player->missilesOfTank.at(0)->setDisappear(true);
-
-                          //敌方导弹消失
-                          info.enemytanks.at(i)->missilesOfTank.at(0)->setDisappear(true);
-
-                          //恢复导弹数
-                          info.player->setMissileNum();
-                          info.enemytanks.at(i)->setMissileNum();
-
-                          break;
-                      }
-
-                  }
-      }
-}
-*/
 
 void MainWindow::isOver()
 {

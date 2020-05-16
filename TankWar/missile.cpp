@@ -3,14 +3,36 @@
 Missile::Missile(const Tank& tank)
 {
     dir = tank.dir;
-    pos.setX(tank.pos.x() + 20);
-    pos.setY(tank.pos.y() );
-    calSphere();
-
     step = tank.step + 10;
     attack = tank.attack;
     kind = tank.kind;
     group = tank.group;
+
+    if(dir == RIGHT)
+    {
+        pos.setX(tank.pos.x() + 60);
+        pos.setY(tank.pos.y() + 30);
+    }
+
+    if(dir == LEFT)
+    {
+        pos.setX(tank.pos.x());
+        pos.setY(tank.pos.y() + 30);
+    }
+
+    if(dir == UP)
+    {
+        pos.setX(tank.pos.x() + 30);
+        pos.setY(tank.pos.y());
+    }
+
+    if(dir == DOWN)
+    {
+        pos.setX(tank.pos.x() + 30);
+        pos.setY(tank.pos.y() + 60);
+    }
+
+    calSphere();
     setDisappear(false);
 
 }
@@ -19,8 +41,6 @@ void Missile::display(QPainter &paint)
 {
     if(this->isDisappear() == true)
         return;
-    if(this->group == 1)
-        qDebug("enemy missile display");
 
     paint.drawImage(rectSphere, info.missilePic);
 }

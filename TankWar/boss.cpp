@@ -4,19 +4,13 @@ Boss::Boss()
 {
 
     this->setDisappear(false);
-/*
-    this->pos.setX(6 * CELLWIDTH);
-    this->pos.setY(12 * CELLHEIGHT);
-*/
+
     this->calSphere();
 }
 
 void Boss::display(QPainter &paint)
 {
-    /*
-    if(isDisappear() == false)
-        paint.drawImage(rectSphere, info.bossPic);
-     */
+
 }
 
 void Boss::calSphere()
