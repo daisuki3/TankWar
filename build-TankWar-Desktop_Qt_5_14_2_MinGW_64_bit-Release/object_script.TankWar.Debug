@@ -1,0 +1,10 @@
+debug/base.o
+debug/boss.o
+debug/cell.o
+debug/main.o
+debug/mainwindow.o
+debug/map.o
+debug/missile.o
+debug/tank.o
+debug/qrc_src.o
+debug/moc_mainwindow.o

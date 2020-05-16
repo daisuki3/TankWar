@@ -31,7 +31,6 @@ struct INFO
     Map *map;
     Tank *player;
     Boss *boss;
-
     //npc坦克
     QList<Tank*> enemytanks;
 

@@ -35,6 +35,11 @@ Tank::Tank()
 //敌方坦克
 Tank::Tank(int row, int col, Dir dir,int kind)
 {
+    if(info.map->getCell(row,col)->is_penetration_of_tank() == false)
+        return;
+
+
+
     pos.setX(row * CELLWIDTH);
     pos.setY(col * CELLHEIGHT);
 
@@ -44,7 +49,6 @@ Tank::Tank(int row, int col, Dir dir,int kind)
     this->dir = dir;
     this->kind = kind;
     this->die = 0;
-   // this->missileNum = 0;
 
     disappear = false;
     isFire = false;
@@ -86,8 +90,10 @@ void Tank::display(QPainter &paint)
 
     if(die == 1)
     {
+        info.player->life += 1;
+        info.score += this->kind * 10;
         paint.drawImage(rectSphere,info.boomPic);
-        die = 2;
+        die = 2;  //丢弃
     }
 
     //绘制坦克
@@ -117,12 +123,6 @@ void Tank::setDir(Dir dir)
     this->dir = dir;
 }
 
-/*
-void Tank::setMissileNum()
-{
-    missileNum = 0;
-}
-*/
 
 void Tank::move()
 {

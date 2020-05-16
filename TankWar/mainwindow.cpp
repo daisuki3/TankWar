@@ -119,6 +119,8 @@ void MainWindow::initGame()
     info.bossPic.load(":/new/prefix1/boss.png");
     info.boomPic.load(":/new/prefix1/tank_boom.png");
 
+
+
     loadCell();
 
     status = gaming;
@@ -290,6 +292,7 @@ void MainWindow::keyPressEvent(QKeyEvent* event)
             }
             else if(event->key() == Qt::Key_J)
             {
+
                 info.player->startFire();
             }
     }
@@ -317,6 +320,17 @@ void MainWindow::timeFun()
     if(status != gaming)
         return;
 
+    if(info.score > 500)
+    {
+        status = pause;
+
+        timer->stop();
+
+        showEnd();
+
+        this->close();
+    }
+
     Dir tmpDir;
     int tmp;
 
@@ -330,7 +344,7 @@ void MainWindow::timeFun()
     for(int i = 0; i < info.enemytanks.count(); ++i)
     {
 
-        if(qrand() % 10 == 0)
+        if(qrand() % 11 == 0)
         {
             qDebug("enemy move and fire");
 
@@ -338,7 +352,7 @@ void MainWindow::timeFun()
 
         }
 
-        if(qrand() % 10 == 0)
+        if(qrand() % 12 == 0)
         {
             info.enemytanks.at(i)->startFire();
         }
@@ -382,11 +396,6 @@ void MainWindow::timeFun()
          }
 
     }
-    //end
-
-    info.player->move();
-    info.player->fire();
-
 
 
     for(int i=0;i<info.enemytanks.count();++i)
@@ -398,19 +407,24 @@ void MainWindow::timeFun()
 
     for(int i = 0; i < info.enemytanks.count(); ++i)
     {
-        if(qrand() % 4 == 0)
+        if(qrand() % 3 == 0)
         {
             info.enemytanks.at(i)->stopMove();
         }
 
-        if(qrand() % 3 == 0)
+        if(qrand() % 2 == 0)
         {
             info.enemytanks.at(i)->stopFire();
         }
     }
 
 
-    if(isEnemyAllDisappeared())
+    //end
+
+    info.player->move();
+    info.player->fire();
+
+    if(isEnemyAllDisappeared() == true)
     {
         status = pause;
 
@@ -419,6 +433,34 @@ void MainWindow::timeFun()
         showEnd();
 
         this->close();
+    }
+
+
+
+    if(qrand() % 27 == 0)
+    {
+        bool  judge = true;
+
+        int x = qrand() % 13;
+        int y = qrand() % 13;
+        int forkind = qrand() % 3 + 1;
+        Tank *tmp = new Tank();
+        for(int i = 0; i < info.enemytanks.count(); ++i)
+        {
+            if(tmp->isBoom(info.enemytanks.at(i)) == true)
+                judge = false;
+        }
+
+        if(tmp->isBoom(info.player))
+            judge = false;
+
+        if(info.map->getCell(x, y)->is_penetration_of_tank() == false)
+            judge = false;
+
+        delete tmp;
+
+        if(judge == true)
+            info.enemytanks.append(new Tank(x, y, DOWN, forkind));
     }
 
 

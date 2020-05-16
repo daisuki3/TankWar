@@ -1,0 +1,10 @@
+release/base.o
+release/boss.o
+release/cell.o
+release/main.o
+release/mainwindow.o
+release/map.o
+release/missile.o
+release/tank.o
+release/qrc_src.o
+release/moc_mainwindow.o
