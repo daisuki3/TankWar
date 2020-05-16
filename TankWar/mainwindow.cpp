@@ -66,10 +66,10 @@ void MainWindow::initGame()
     Tank* tmp = new Tank(0,0,DOWN,1);
     info.enemytanks.append(tmp);
 
-    tmp = new Tank(0,6,DOWN,2);
+    tmp = new Tank(6,6,DOWN,2);
     info.enemytanks.append(tmp);
 
-    tmp = new Tank(0,12,DOWN,3);
+    tmp = new Tank(2,12,DOWN,3);
     info.enemytanks.append(tmp);
 
 
@@ -267,27 +267,27 @@ void MainWindow::keyPressEvent(QKeyEvent* event)
 
     if(status == gaming)
     {
-            if(event->key()==Qt::Key_W)
+            if(event->key() == Qt::Key_W)
             {
                 info.player->setDir(UP);
                 info.player->startMove();
             }
-            else if(event->key()==Qt::Key_S)
+            else if(event->key() == Qt::Key_S)
             {
                 info.player->setDir(DOWN);
                 info.player->startMove();
             }
-            else if(event->key()==Qt::Key_A)
+            else if(event->key() == Qt::Key_A)
             {
                 info.player->setDir(LEFT);
                 info.player->startMove();
             }
-            else if(event->key()==Qt::Key_D)
+            else if(event->key() == Qt::Key_D)
             {
                 info.player->setDir(RIGHT);
                 info.player->startMove();
             }
-            else if(event->key()==Qt::Key_J)
+            else if(event->key() == Qt::Key_J)
             {
                 info.player->startFire();
             }
@@ -332,10 +332,10 @@ void MainWindow::timeFun()
         if(qrand()%2 == 0)
         {
             qDebug("%d",qrand());
-            qDebug("enemy go");
+            qDebug("enemy move and fire");
 
             info.enemytanks.at(i)->startMove();
-            info.enemytanks.at(i)->startFire();
+           // info.enemytanks.at(i)->startFire();
         }
 
         if(qrand()%10==0)
@@ -408,6 +408,7 @@ void MainWindow::timeFun()
         status = pause;
 
         timer->stop();
+
         showEnd();
 
         this->close();

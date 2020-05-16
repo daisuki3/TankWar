@@ -45,7 +45,7 @@ Tank::Tank(int row, int col, Dir dir,int kind)
    // this->missileNum = 0;
 
     disappear = false;
-    isFire = false;
+    isFire = true;
     isMove = false;
 
     step = steps[kind];
@@ -64,10 +64,16 @@ void Tank::calSphere()
 void Tank::display(QPainter &paint)
 {
     //绘制坦克发射的子弹
-    for(int i = 0; i < missilesOfTank.count(); ++i)
+    for(int i = 0; i < this->missilesOfTank.count(); ++i)
     {
-        if(missilesOfTank.at(i)->disappear == false)
-            missilesOfTank.at(i)->display(paint);
+        if(this->missilesOfTank.at(i)->disappear == false)
+        {
+            this->missilesOfTank.at(i)->display(paint);
+            if(this->group == 1)
+            {
+                qDebug("enemy missile");
+            }
+        }
         else
         {
             delete missilesOfTank.at(i);

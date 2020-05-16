@@ -3,8 +3,8 @@
 Missile::Missile(const Tank& tank)
 {
     dir = tank.dir;
-    pos.setX(tank.pos.x() + 21);
-    pos.setY(tank.pos.y() + 21);
+    pos.setX(tank.pos.x() + 20);
+    pos.setY(tank.pos.y() );
     calSphere();
 
     step = tank.step + 10;
@@ -17,8 +17,10 @@ Missile::Missile(const Tank& tank)
 
 void Missile::display(QPainter &paint)
 {
-    if(this->isDisappear())
+    if(this->isDisappear() == true)
         return;
+    if(this->group == 1)
+        qDebug("enemy missile display");
 
     paint.drawImage(rectSphere, info.missilePic);
 }
