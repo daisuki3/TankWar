@@ -66,10 +66,10 @@ void MainWindow::initGame()
     Tank* tmp = new Tank(0,0,DOWN,1);
     info.enemytanks.append(tmp);
 
-    tmp = new Tank(6,6,DOWN,2);
+    tmp = new Tank(7,6,DOWN,2);
     info.enemytanks.append(tmp);
 
-    tmp = new Tank(1,5,DOWN,3);
+    tmp = new Tank(1,6,DOWN,3);
     info.enemytanks.append(tmp);
 
 
