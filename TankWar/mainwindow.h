@@ -16,7 +16,7 @@
 #include <QLabel>
 
 
-#define TIME_INTERVAL 40
+#define TIME_INTERVAL 25
 
 
 QT_BEGIN_NAMESPACE
