@@ -127,6 +127,7 @@ void MainWindow::initGame()
 
     timer = new QTimer(this);
     timer->setInterval(TIME_INTERVAL);
+
     connect(timer, SIGNAL(timeout()),
             this,SLOT(timeFun()));
 
